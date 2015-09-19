@@ -1,7 +1,6 @@
 21/07/2015-22:29:15-Usuario: peluca creado exitosamente.
 22/07/2015-17:34:40-Usuario: alan creado exitosamente.
 22/07/2015-21:47:46-Grupo carballo creado exitosamente.
-22/07/2015-21:48:23-Grupo: carballo modifico su nombre a caraballo.
 22/07/2015-21:49:00-Se modifico el ID del grupo caraballo a 1212 exitosamente.
 22/07/2015-21:49:41-El grupo: caraballo ha sido borrado exitosamente.
 26/07/2015-16:01:01-Se agrego al grupo: admin el usuario: SIADadmin
