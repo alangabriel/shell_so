@@ -5,6 +5,7 @@
 22/07/2015-21:49:00-Se modifico el ID del grupo caraballo a 1212 exitosamente.
 22/07/2015-21:49:41-El grupo: caraballo ha sido borrado exitosamente.
 26/07/2015-16:01:01-Se agrego al grupo: admin el usuario: SIADadmin
+hola
 28/07/2015-20:38:59-Grupo mu creado exitosamente.
 28/07/2015-21:02:00-Grupo hello creado exitosamente.
 28/07/2015-21:02:24-El grupo: hello ha sido borrado exitosamente.
