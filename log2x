@@ -1,0 +1,118 @@
+export LANG=es_UY.UTF-8
+
+ani=$(date +%Y)
+mes=$(date +%m)
+dia=$(date +%d)
+hor=$(date +%H)
+min=$(date +%M)
+echo $ani/$mes/$dia $hor:$min
+
+
+mkdir -p /home/ceibal/Escritorio/bin/log/$ani/$mes/$dia/$hor/ 2>/dev/null
+
+
+who >/home/ceibal/Escritorio/bin/log/$ani/$mes/$dia/$hor/$ani$mes$dia$hor$min
+
+
+###########################################
+# comienzo de diferencia entre logx y log2x
+# log2x es version mejorado de logx
+# (incluye el postproceso de la insercion en la base de datos)
+# correr solo log2x ! (logx discontinuado)
+fn=$HOME/log/$ani/$mes/$dia/$hor/$ani$mes$dia$hor$min
+# datos de prueba :
+#2015/08/17 15:43
+#/home/SIADadmin/log/2015/08/17/15/201508171543
+#estudiante tty7         2015-08-17 15:20 (:0)
+#estudiante pts/0        2015-08-17 15:20 (:0.0)
+#SIADadmin pts/1        2015-08-17 15:40
+#informix pts/2        2015-08-17 15:42
+# para testing puedo usar este fijo : (despues comentar)
+#fn=/home/SIADadmin/log/2015/08/17/15/201508171543
+#echo $fn
+#cat $fn
+#read -p "Verifique $fn ..." x
+
+#echo env
+#env
+#echo set
+#set
+
+# BASE de DATOS
+# * Resumen flash *
+#   =============
+# Magallaness WD : Conectarse como informix, informix y dar /opt/IBM/informix/bin/oninit& 
+# Para usar dbaccess desde root o tstDB : . /home/tstDB/ajustoIFX
+# equivalente del script en variables :
+export PATH=$PATH:/opt/IBM/informix/bin
+export INFORMIXDIR=/opt/IBM/informix
+export INFORMIXSERVER=ol_wd
+
+# Creo base (una sola vez)
+echo 'CREATE DATABASE siadadm' | dbaccess
+# Creo tabla (una sola vez)
+echo drop table twho | dbaccess siadadm
+echo 'create table twho 
+  (
+    momento datetime year to minute,
+    login varchar(30),
+    termin varchar(40),
+    inicia datetime year to minute,
+    origen varchar(20)
+  );' | dbaccess siadadm
+dbschema -d siadadm -t twho | less
+echo drop table twhoc | dbaccess siadadm
+echo 'create table twhoc 
+  (
+    momento datetime year to minute,
+    login varchar(30),
+    termin varchar(40),
+    inicia datetime year to minute,
+    origen varchar(20),
+    finalz datetime year to minute
+  );' | dbaccess siadadm
+dbschema -d siadadm -t twhoc | less
+exit
+echo delete from twho | dbaccess siadadm
+echo 'insert into twho values (TO_DATE("'$ani-$mes-$dia $hor:$min'", "%Y-%m-%d %H:%M"), "inicio")' | dbaccess siadadm
+echo 'select * from twho' | dbaccess siadadm
+echo '*** antes ***'
+
+date >$HOME/log/selectCount.borr # reseteo archivo de testing...
+while read linea
+do 
+   linformat=$(echo $linea | awk '{print $1"|"$2"|"$3" "$4"|"$5}')
+   login=$(echo $linformat | cut -f1 -d'|')
+   echo 'login:' $login
+   termin=$(echo $linformat | cut -f2 -d'|')
+   echo 'terminal:' $termin
+   inicia=$(echo $linformat | cut -f3 -d'|')
+   echo 'inicia:' $inicia
+   origen=$(echo $linformat | cut -f4 -d'|')
+   echo 'origen:' $origen
+   anii=$(echo $inicia | cut -c1-4)
+   mesi=$(echo $inicia | cut -c6-7)
+   diai=$(echo $inicia | cut -c9-10)
+   hori=$(echo $inicia | cut -c12-13)
+   mini=$(echo $inicia | cut -c15-16)
+   echo 'insert into twho values (TO_DATE("'$ani-$mes-$dia $hor:$min'", "%Y-%m-%d %H:%M"), "'$login'", "'$termin'",TO_DATE("'$anii-$mesi-$diai $hori:$mini'", "%Y-%m-%d %H:%M"), "'$origen'")' | dbaccess siadadm
+   # tabla consolidada, mejor opcion, discontinuar despues el anterior insert...
+   # (o dejar un tiempo para verificar :
+   # 1) los datos de ambas tablas son consistentes uno respecto al otro
+   # 2) tratar de obtener twhoc a partir de queries sobre twho y ver que da lo mismo
+   # )
+   # Algoritmo :
+   # Si  la terna login/terminal/origen no existe, lo inserto
+   # Si existe y tiene fin, lo doy de alta de nuevo (es nueva conexion del mismo user en el mismo terminal, desde misma IP)
+   # Terna existe, no tiene fin conexion, no hago nada (continua)
+   # Luego verifico sobre todas las que no tienen fin, si no esta la marco finalizada en este minuto (o el anterior)
+   
+   # Si  la terna login/terminal/origen no existe, lo inserto
+   echo 'SELECT COUNT(*) FROM twhoc WHERE login="'$login'" AND termin="'$termin'" AND origen="'$origen'"' >>$HOME/log/selectCount.borr
+   echo 'SELECT COUNT(*) FROM twhoc WHERE login="'$login'" AND termin="'$termin'" AND origen="'$origen'"' | dbaccess siadadm >>$HOME/log/selectCount.borr
+
+
+done < $fn
+echo '*** despues ***'
+echo 'select * from twho' | dbaccess siadadm
+

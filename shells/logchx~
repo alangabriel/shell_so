@@ -1,0 +1,13 @@
+# cierre de hora : tar de todos los archivos de la hora anterior
+# corre en el minuto 3 de la siguiente nueva hora
+# (9:03 preocsa 08:00 a 08:59)
+# Los .tar quedaran en $HOME/log/tars/YYYY/mm/dd/
+hAnt=$(date --date='-1 hour' +%Y%m%d%H)
+ani=$(echo $hAnt | cut -c1-4)
+mes=$(echo $hAnt | cut -c5,6)
+dia=$(echo $hAnt | cut -c7,8)
+hor=$(echo $hAnt | cut -c9,10)
+# -p crea los directorios padres sino existen
+mkdir -p $HOME/Escritorio/log/tars/$ani/$mes/$dia
+tar -cvf $HOME/Escritorio/log/tars/$ani/$mes/$dia/$ani$mes$dia$hor.tar $HOME/Escritorio/log/$ani/$mes/$dia/$hor
+echo "Hora anterior : $hAnt ($ani/$mes/$dia $hor:$min)"

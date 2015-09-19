@@ -1,0 +1,10 @@
+
+dAnt=$(date --date='-1 day' +%Y%m%d)
+
+ani=$(echo $dAnt | cut -c1-4)
+mes=$(echo $dAnt | cut -c5,6)
+dia=$(echo $dAnt | cut -c7,8)
+
+rmdir $HOME/Escritorio/tars/$ani/??/?? $HOME/Escritorio/tars/$ani/?? $HOME/Escritorio/tars/$ani 2>/dev/null
+
+

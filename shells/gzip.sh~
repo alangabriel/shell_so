@@ -1,0 +1,65 @@
+# a la madrugada aplico gzip a los 24 archivos tar de cada hora (tienen adentro 60 archivos, uno por minuto)
+dAnt=$(date --date='-1 day' +%Y%m%d)
+
+ani=$(echo $dAnt | cut -c1-4)
+mes=$(echo $dAnt | cut -c5,6)
+dia=$(echo $dAnt | cut -c7,8)
+hor=$(echo $hAnt | cut -c9,10)
+mkdir -p /home/SIADadmin/bin/gzips/$ani/$mes/$dia
+gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia[0-2][0-9].tar
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia00.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia01.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia02.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia03.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia04.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia05.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia06.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia07.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia08.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia09.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia10.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia11.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia12.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia13.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia14.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia15.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia16.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia17.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia18.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia19.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia20.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia21.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia22.tar 2>/dev/null
+#gzip /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia23.tar 2>/dev/null
+cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia[0-2][0-9].tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/ 
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia00.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia01.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia02.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia03.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia04.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia05.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia06.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia07.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia08.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia09.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia10.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia11.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia12.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia13.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia14.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia15.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia16.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia17.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia18.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia19.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia20.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia21.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia22.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+#cp /home/SIADadmin/bin/tars/$ani/$mes/$dia/$ani$mes$dia23.tar.gz  /home/SIADadmin/bin/gzips/$ani/$mes/$dia/  2>/dev/null
+echo " Se comprimio el respaldo de ayer"
+echo " Dia anterior: $dia"
+echo " Mes: $mes"
+echo " Año: $ani"
+echo ""
+echo ""
+source /home/SIADadmin/bin/borrar

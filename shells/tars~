@@ -1,0 +1,23 @@
+# cierre de hora : tar de todos los archivos de la hora anterior
+# corre en el minuto 1 de la siguiente nueva hora
+# (9:01 preocsa 08:00 a 08:59)
+# Los .tar quedaran en $HOME/tars/YYYY/mm/dd/
+clear
+echo " S - I - A - D"
+hAnt=$(date --date='-1 hour' +%Y%m%d%H)
+ani=$(echo $hAnt | cut -c1-4)
+mes=$(echo $hAnt | cut -c5,6)
+dia=$(echo $hAnt | cut -c7,8)
+hor=$(echo $hAnt | cut -c9,10)
+
+mkdir -p $HOME/Escritorio/tars/$ani/$mes/$dia 2>/dev/null
+tar -cf $HOME/Escritorio/tars/$ani/$mes/$dia/$ani$mes$dia$hor.tar $HOME/Escritorio/log/$ani/$mes/$dia/$hor 2>/dev/null
+echo "Se realizo un respaldo de la hora anterior"
+echo "	Hora : $hor" 
+echo "	Dia : $dia"
+echo "	Mes : $mes"
+echo "	Año : $ani"
+echo ""
+echo ""
+echo ""
+ 

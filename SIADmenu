@@ -1,0 +1,47 @@
+#!/bin/bash
+clear
+
+while :
+do
+echo ""
+echo "            _________________________________________________________"
+echo "            _________________________________________________________ "
+echo "	  ||		 _____   _       ___   _____                || "
+echo "	  ||		/  ___/ | |     /   | |  __ \               || "
+echo "	  ||		| |___  | |    / /| | | |  | |              ||"
+echo "	  ||		\___  \ | |   / / | | | |  | |              ||"
+echo "	  ||		 ___| | | |  / /  | | | |__| |              ||"
+echo "	  ||		/_____/ |_| /_/   |_| |_____/               ||"
+echo "          ||________________________________________________________|| "
+echo "           __________________________________________________________                                                                  "
+echo "                                                                      "
+echo "			1. Menu ABMC Usuarios "
+echo "			2. Menu ABMC Grupos "
+echo "			    0. Salir :( "
+echo " "
+echo -n "            	         Seleccione una opcion:"
+read opcion
+case $opcion in
+1) echo "abriendo... " ;
+sleep 2
+source /home/SIADadmin/bin/usu.sh;;
+2) echo "abriendo..." ;
+sleep 2
+clear
+source /home/SIADadmin/bin/grup.sh ;;
+0) echo ""
+echo ""
+echo "		 Hasta luego cabesita... Que tenga un buen dia :D ....";
+sleep 4
+clear
+exit 1;;
+*)echo ""
+echo "" 
+echo "		$opcion es una opcion invalida. Es tan dificil? " ;
+echo "		Precione una tecla para continuar haceme el favor....";
+
+read foo
+clear;;
+esac 
+done 
+

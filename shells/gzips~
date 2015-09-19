@@ -1,0 +1,17 @@
+# a la madrugada aplico gzip a los 24 archivos tar de cada hora (tienen adentro 60 archivos, uno por minuto)
+dAnt=$(date --date='-1 day' +%Y%m%d)
+
+ani=$(echo $dAnt | cut -c1-4)
+mes=$(echo $dAnt | cut -c5,6)
+dia=$(echo $dAnt | cut -c7,8)
+hor=$(echo $hAnt | cut -c9,10)
+mkdir -p $HOME/Escritorio/gzips/$ani/$mes/$dia
+gzip $HOME/Escritorio/tars/$ani/$mes/$dia/$ani$mes$dia[0-2][0-9].tar 
+cp $HOME/Escritorio/tars/$ani/$mes/$dia/$ani$mes$dia[0-2][0-9].tar.gz  $HOME/Escritorio/gzips/$ani/$mes/$dia/
+echo " Se comprimio el respaldo de ayer"
+echo " Dia anterior: $dia"
+echo " Mes: $mes"
+echo " Año: $ani"
+echo ""
+echo ""
+source /home/ceibal/Escritorio/shells/borrar
